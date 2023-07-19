@@ -1,4 +1,8 @@
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
+#include <iostream>
+
+using namespace std;
 
 int main(void)
 {
@@ -18,6 +22,13 @@ int main(void)
 
     /* Make the window's context current */
     glfwMakeContextCurrent(window);
+
+    //initialize GLEW AFTER setting valid windows OpenGL context
+    if (glewInit() != GLEW_OK)
+        cout << "GLEW Init Error" << endl;
+
+    //print openGL version
+    cout << glGetString(GL_VERSION) << endl;
 
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
